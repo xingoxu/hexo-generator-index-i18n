@@ -42,6 +42,7 @@ hexo.extend.generator.register('index-i18n', function indexI18nGenerator(locals)
   const languages = [].concat(config.language || [])
     .filter(lang => lang !== 'default');
   
+  const defaultLanguage = languages[0];
   let indexPages = [].concat.apply([],
     languages.map(lang => getIndexPages(lang, lang, posts, config, defaultLanguage))
   );
