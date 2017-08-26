@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-index-i18n",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "I18n index generator plugin for Hexo",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcatliu/hexo-generator-index-i18n.git"
+    "url": "git+https://github.com/xingoxu/hexo-generator-index-i18n.git"
   },
   "keywords": [
     "hexo",
@@ -18,12 +18,12 @@
     "i18n",
     "home"
   ],
-  "author": "xcatliu <xcatliu@gmail.com>",
+  "author": "xingoxu <xingoxu@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xcatliu/hexo-generator-index-i18n/issues"
+    "url": "https://github.com/xingoxu/hexo-generator-index-i18n/issues"
   },
-  "homepage": "https://github.com/xcatliu/hexo-generator-index-i18n#readme",
+  "homepage": "https://github.com/xingoxu/hexo-generator-index-i18n#readme",
   "dependencies": {
     "hexo-pagination": "^0.1.0"
   },

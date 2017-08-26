@@ -10,9 +10,15 @@ const pagination = require('hexo-pagination');
  * @param {Object} config Hexo config
  * @returns {Object[]} Array of translated and paginated index pages
  */
-function getIndexPages(baseUrl, lang, posts, config) {
+function getIndexPages(baseUrl, lang, posts, config, defaultLanguage) {
   const paginationDir = config.pagination_dir || 'page';
-  const translatedPosts = posts.filter(post => post.lang === lang);
+  const translatedPosts = posts.filter(post => {
+    if (!config.index_generator.single_language_index)
+      return true;
+    if (lang === defaultLanguage)
+      return (post.lang === lang || post.lang === undefined);
+    return post.lang === lang;
+  });
 
   return pagination(baseUrl, translatedPosts, {
     perPage: config.index_generator.per_page,
@@ -35,14 +41,12 @@ hexo.extend.generator.register('index-i18n', function indexI18nGenerator(locals)
   const posts = locals.posts.sort(config.index_generator.order_by);
   const languages = [].concat(config.language || [])
     .filter(lang => lang !== 'default');
-  const defaultLanguage = languages[0];
+  
   let indexPages = [].concat.apply([],
-    languages.map(lang => getIndexPages(lang, lang, posts, config))
+    languages.map(lang => getIndexPages(lang, lang, posts, config, defaultLanguage))
   );
 
-  if (config.index_generator.single_language_index && defaultLanguage) {
-    indexPages = indexPages.concat(getIndexPages('', defaultLanguage, posts, config));
-  }
+  indexPages = indexPages.concat(getIndexPages('', defaultLanguage, posts, config, defaultLanguage));
 
   return indexPages;
 });
